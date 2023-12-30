@@ -1,0 +1,48 @@
+* {
+    color: white;
+    
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+    background-color: #121212;
+}
+
+.cards {
+    margin-top: 10%;
+    display: grid;
+    grid-template-columns: 100%;
+    justify-items: center;
+}
+
+.card {
+    width: 60%;
+    padding: 5%;
+    max-width: 400px;
+    background-color: #192734;
+    box-shadow: 0 0 12px rgba(184, 222, 241, 0.35);
+    border: solid 1px rgb(45, 44, 44);
+    border-radius: 5%;
+}
+
+input {
+    color:black;
+}
+input[type=submit] {
+    min-width: fit-content;
+    width: 25%;
+    color: black;
+    margin-top: 3px;
+}
+
+.header {
+    top: 0;
+    display: inline-block;
+    background-color: #192734;
+    justify-content: space-evenly;
+    padding: 20px;
+    padding-left: 10%;
+}

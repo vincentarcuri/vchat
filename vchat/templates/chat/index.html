@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0,maximum-scale=1.0, user-scalable=no" />
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0,maximum-scale=1.0"/>
+    <title>Contacts</title>
+    <script src="{{ url_for('static', filename='js/handleChat.js') }}" defer></script>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}"/>
+</head>
+<body>
+    <div class="header">
+        <h1>{{ g.user['username'] }}</h1>
+        <div class="links">
+            <a href="{{ url_for('auth.logout') }}">Logout</a>
+            <a href="{{ url_for('chat.add') }}">Add Friend</a>
+        </div>
+    </div>
+    <div class="menu">
+        <h1 id="arrow">&#60</h1>
+        <div class="chooser">
+            <div id="chat" class="tab">CHAT</div>
+            <div id="file" class="tab">FILES</div>
+        </div>
+    </div>
+    <div class="contacts">
+        {% block content %}
+            {% for friend in friends %}
+                <div class="contact_card" data-id="{{ friend['id'] }}">
+                    {{ friend['username'] }}
+                </div>
+            {% endfor %}
+        {% endblock %}
+    </div>
+    <div class="windows">
+        <iframe id="msg-window" src=""></iframe>
+        <iframe id="send-window" src=""></iframe>
+    </div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+.files {
+    display: flex;
+}
+
+.file {
+    width: 10%;
+    position: relative;
+}
+
+.file img {
+    max-width: 100%;
+}
+
+.file p {
+    color: red;
+    font-family: monospace;
+    position: absolute;
+    top: 25%;
+    left: 35%;
+    font-size: 1.5em;
+}
+
+.file a:visited {
+    color:aqua;
+}

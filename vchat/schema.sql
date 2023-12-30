@@ -1,0 +1,47 @@
+DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS contact;
+DROP TABLE IF EXISTS message;
+DROP TABLE IF EXISTS shared;
+DROP TABLE IF EXISTS files;
+
+CREATE TABLE user (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT UNIQUE NOT NULL,
+    password TEXT UNIQUE NOT NULL
+);
+
+CREATE TABLE contact (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    friend_id INTEGER NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES user (id),
+    FOREIGN KEY (friend_id) REFERENCES user (id),
+    UNIQUE (user_id, friend_id) ON CONFLICT REPLACE
+);
+
+CREATE TABLE message (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    from_id INTEGER NOT NULL,
+    to_id INTEGER NOT NULL,
+    date_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    msg TEXT NOT NULL,
+    FOREIGN KEY (from_id) REFERENCES user (id),
+    FOREIGN KEY (to_id) REFERENCES user (id)
+);
+
+CREATE TABLE files (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    type TEXT NOT NULL
+);
+
+CREATE TABLE shared (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    from_id INTEGER NOT NULL,
+    to_id INTEGER NOT NULL,
+    date_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    file_id INTEGER,
+    FOREIGN KEY (file_id) REFERENCES files (id),
+    FOREIGN KEY (from_id) REFERENCES user (id),
+    FOREIGN KEY (to_id) REFERENCES user (id)
+);

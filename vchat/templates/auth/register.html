@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0,maximum-scale=1.0, user-scalable=no" />
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0,maximum-scale=1.0"/>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}"/>
+    <script src="{{ url_for('static', filename='js/validate_regr.js') }}" defer></script>
+    <title>Register</title>
+</head>
+<body>
+    <img class="vchat-banner" src="{{ url_for('static', filename='images/vchatBanner.png') }}" alt="vchat Banner">
+    <div class="cards">
+        <div class="card">
+            <h1>New User</h1>
+            <form name="register" method="post">
+                <label for="username">Username</label>
+                <input name="username" id="username" required>
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" required>
+                <label for="retype">Re-Type Password</label>
+                <input type="password" name="retype" id="retype" required>
+                <input type="submit" value="Register">
+            </form>
+            <a href="{{ url_for('auth.login')}}">Log In</a>
+        </div>
+    </div>
+</body>
+</html>

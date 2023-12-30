@@ -1,0 +1,66 @@
+* {
+    color: white;
+    
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+body {
+    background-color: black;
+    width: 100%;
+    max-width: 100%;
+}
+
+
+.vchat-banner {
+    width: 40%;
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: 100%;
+    justify-items: center;
+}
+
+.card {
+    width: 60%;
+    padding: 5%;
+    max-width: 400px;
+    background-color: #192734;
+    box-shadow: 0 0 12px rgba(184, 222, 241, 0.35);
+    border: solid 1px rgb(45, 44, 44);
+    border-radius: 5%;
+}
+
+input {
+    color: black;
+    margin-bottom: 3%;
+}
+
+
+
+input[type=submit] {
+    background-color: #041c32;
+    padding: 10px;
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 5%;
+    font-size: 1.4em;
+    color: white;
+}
+
+input[type=submit]:hover {
+    background-color: white;
+    color:black;
+}
+
+a {
+    margin-top: 20px;
+    display: block;
+    text-align: center;
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0,maximum-scale=1.0, user-scalable=no" />
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0,maximum-scale=1.0"/>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/add.css') }}"/>
+    <title>Add Contact</title>
+</head>
+<body>
+    <div class="header">
+        <h1>{{ g.user['username'] }}</h1>
+        <a href="{{ url_for('auth.logout') }}">Logout</a>
+        <a href="{{url_for('chat.index') }}">Back to Chat</a>
+    </div>
+    <div class="cards">
+        <div class="card">
+            <form method="post">
+                <label for="friend">New Contact</label>
+                <input name="friend" id="friend" required/>
+                <input type="submit" value="Add"/>
+            </form>
+        </div>
+    </div>
+    {% for msg in get_flashed_messages() %}
+        <script>
+            window.alert("{{ msg }}");
+        </script>
+    {% endfor %}
+</body>
+</html>
