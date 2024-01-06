@@ -27,6 +27,12 @@ def create_app(test_config=None) -> Flask:
     except OSError:
         pass
 
+    # Ensure Uploads Folder exists
+    try:
+        os.makedirs(UPLOADS)
+    except OSError:
+        pass
+
     # Add initializing db function to app
     from . import db
     db.init_app(app)
