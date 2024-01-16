@@ -1,23 +1,25 @@
 * {
     color: white;
-    
     margin: 0;
     padding: 0;
-    width: 100%;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+html {
+    width: 100dvw;
+    overflow-x: hidden;
 }
 
 body {
     background-color: #121212;
+    
 }
 
 .header {
-    top: 0;
-    display: inline-block;
     background-color: #192734;
-    justify-content: space-evenly;
     padding: 20px;
-    padding-left: 10%;
+    width: 100%;
+    max-width: 100dvw;
 }
 
 .menu {
@@ -98,13 +100,15 @@ body {
 }
 
 #msg-window {
-    height: 70vh;
+    height: 65vh;
+    width: 100%;
     max-width: 100%;
 
 }
 
 #send-window {
     height: 10vh;
+    width: 100%;
     max-width: 100%;
 }
 
