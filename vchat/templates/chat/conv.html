@@ -1,26 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!--
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="viewport" content="width=device-width, initial-scale = 1.0,maximum-scale=1.0, user-scalable=no" />
-    -->
     <meta name="viewport" content="width=device-width, initial-scale = 1.0,maximum-scale=1.0"/>
     <title>Contacts</title>
-    <script src="{{ url_for('static', filename='js/pageLoader.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/chatFetch.js') }}" defer></script>
     <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/conv.css') }}"/>
 </head>
 <body>
+    <script>
+        const USER = {{ g.user['id'] }};
+        const FRIEND = {{ friend_id }};
+    </script>
     <div class="header">
         <h1>{{ friend['username'] }}</h1>
     </div>
-    <div class="conversation">
-    {% for msg in messages %}
-        {% if msg['from_id'] == g.user['id'] %}
-            <div class="user">{{ msg['msg'] }}</div>
-        {% else %}
-            <div class="other">{{ msg['msg'] }}</div>
-        {% endif %}
-    {% endfor %}
+    <div id="convo" class="conversation">
+
     </div>
+
 </body>
+</html>

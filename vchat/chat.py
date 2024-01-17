@@ -1,11 +1,13 @@
 import os
+import json
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, url_for, current_app, send_from_directory
+    Blueprint, flash, g, redirect, render_template, request, url_for, current_app, send_from_directory, jsonify
 )
 from werkzeug.exceptions import abort
 
 from vchat.auth import login_required
 from vchat.db import get_db
+
 
 ALLOWED_EXTENSIONS = {
     'txt', 'pdf', 'ipynb', 'cpp', 'h', 'c', 'png', 'docx', 'doc', 'xlsx',
@@ -78,19 +80,35 @@ def add():
 @bp.route("/conv/<int:id>", methods=("GET",))
 @login_required
 def conv(id):
-    """The message view; displayed in an iFrame on the homepage."""
     db = get_db()
-    messages = db.execute(
-        "SELECT * FROM message"
-        " WHERE (from_id = ? AND to_id = ?)"
-        " OR (from_id = ? AND to_id = ?)",
-        (g.user['id'], id, id, g.user['id'])
-    ).fetchall()
     friend = db.execute(
         "SELECT username FROM user WHERE id = ?",
         (id, )
     ).fetchone()
-    return render_template("chat/conv.html", messages=messages, friend=friend)
+    return render_template("chat/conv.html", friend=friend, friend_id=id)
+
+
+@bp.route("/fetch-msg/<int:id>/<int:last>", methods=("GET",))
+@login_required
+def fetch_messages(id, last):
+    db = get_db()
+    messages = db.execute(
+        """SELECT id, from_id, to_id, msg
+        FROM message
+        WHERE (
+            (from_id = ? AND to_id = ?)
+            OR (from_id = ? AND to_id = ?)
+        ) AND id > ?
+        """, (g.user['id'], id, id, g.user['id'], int(last))
+    ).fetchall()
+    res = [
+        {'id': row[0], 'from': row[1], 'to': row[2], 'msg': row[3]}
+        for row in messages
+    ]
+    return json.dumps(res)
+
+
+
 
 
 @bp.route("/send/<int:id>", methods=("POST", "GET"))
