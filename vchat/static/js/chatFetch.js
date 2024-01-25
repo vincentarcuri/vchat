@@ -45,13 +45,18 @@ function loadMessages (data) {
 function msgToDiv(obj) {
     const conversation = document.getElementById("convo");
     div = document.createElement("div");
-    div.innerText = obj['msg'];
+    div.innerHTML = createHyperlinks(obj['msg']);
     if (obj['from'] == USER) {
         div.classList.add("user");
     } else {
         div.classList.add("other");
     }
     conversation.appendChild(div);
+}
+
+function createHyperlinks(msg) {
+    const regex = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
+    return msg.replaceAll(regex, `<a href="//` + "$&" + `" target="_blank">` + "$&</a>");
 }
 
 const timeout = setInterval(fetchMessages, 1000);
